@@ -1,0 +1,256 @@
+:root {
+  --ink: #1f1e1d;
+  --ink-2: #292826;
+  --ink-3: #34322f;
+  --line: #46433e;
+  --fg: #eeeae2;
+  --dim: #9a958b;
+  --faint: #625e57;
+  --clawd: #d77757;
+  --clawd-hi: #eb9f7f;
+  --q: #b1b9f9;
+  --k: #4eba65;
+  --v: #ffc107;
+  --red: #ff6b80;
+  --teal: #48968c;
+  --purple: #af87ff;
+  --mono: 'Maple Mono', 'Cascadia Mono', 'Noto Sans SC', ui-monospace, monospace;
+  --sans: 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --serif: 'KaTeX_Main', 'Times New Roman', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #121110;
+}
+
+#viewport {
+  position: fixed;
+  inset: 0;
+}
+
+#stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
+  transform-origin: 0 0;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--fg);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+.layers,
+.scene,
+.chrome,
+.actors {
+  position: absolute;
+  inset: 0;
+}
+
+.scene > *,
+.chrome > *,
+.ruler > * {
+  position: absolute;
+}
+
+/* ── Clawd ─────────────────────────────────── */
+.clawd {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.clawd-hop {
+  position: absolute;
+  inset: 0;
+}
+.clawd-svg {
+  display: block;
+}
+.clawd-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  translate: -50% 50%;
+  border-radius: 50%;
+  background: #000;
+  opacity: 0.4;
+}
+
+/* ── 讲解气泡 ──────────────────────────────── */
+.bubble {
+  position: absolute;
+  display: grid;
+  align-items: center;
+  padding: 0 44px;
+  border: 2px solid rgba(215, 119, 87, 0.9);
+  border-radius: 18px;
+  background: #282725;
+}
+.bubble-tail {
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  margin-top: -21px;
+}
+.bubble-text {
+  display: grid;
+}
+.bubble-text .line {
+  grid-area: 1 / 1;
+  margin: 0;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+.lat {
+  font-family: var(--mono);
+  font-size: 0.93em;
+  letter-spacing: 0;
+}
+.seg-q {
+  color: var(--q);
+}
+.seg-k {
+  color: var(--k);
+}
+.seg-v {
+  color: var(--v);
+}
+.seg-o {
+  color: var(--clawd);
+}
+.seg-d {
+  color: var(--dim);
+}
+.seg-b {
+  font-weight: 700;
+}
+
+/* ── 终端界面 ──────────────────────────────── */
+.ruler-line,
+.ruler-fill {
+  height: 2px;
+  margin-top: -1px;
+  background: var(--line);
+}
+.ruler-fill {
+  background: var(--clawd);
+}
+.ruler-tick {
+  width: 2px;
+  height: 10px;
+  margin: -5px 0 0 -1px;
+  background: var(--line);
+}
+.ruler-label {
+  translate: -50% 0;
+  font: 18px var(--mono);
+  color: var(--faint);
+  white-space: nowrap;
+}
+.ruler-marker {
+  width: 14px;
+  height: 14px;
+  background: var(--clawd);
+}
+
+.heading {
+  font-size: 28px;
+  color: var(--dim);
+  white-space: nowrap;
+}
+.heading-gt {
+  font-family: var(--mono);
+  color: var(--faint);
+}
+
+.prompt {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  border: 2px solid rgba(136, 136, 136, 0.6);
+  border-radius: 14px;
+}
+.prompt-line {
+  font-size: 30px;
+  line-height: 1;
+  white-space: pre;
+}
+.gt {
+  margin-right: 18px;
+  font-family: var(--mono);
+}
+.cursor {
+  display: inline-block;
+  width: 0.56em;
+  height: 1.12em;
+  vertical-align: -0.2em;
+  background: var(--fg);
+}
+.placeholder {
+  margin-left: 4px;
+  color: var(--faint);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font: 20px var(--mono);
+  color: var(--faint);
+}
+.foot-right {
+  position: relative;
+}
+.foot-title {
+  position: absolute;
+  right: 0;
+  font-family: var(--sans);
+  white-space: nowrap;
+}
+
+.thinking {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 32px;
+  white-space: nowrap;
+}
+.spin {
+  display: grid;
+  width: 1em;
+  color: var(--clawd);
+}
+.spin-glyph {
+  grid-area: 1 / 1;
+  text-align: center;
+}
+.think-word {
+  font-family: var(--mono);
+  background: linear-gradient(90deg, var(--clawd) 0 38%, #ffd2bd 50%, var(--clawd) 62% 100%);
+  background-size: 320% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.think-esc {
+  font: 24px var(--mono);
+  color: var(--faint);
+}
+
+.banner {
+  position: absolute;
+}

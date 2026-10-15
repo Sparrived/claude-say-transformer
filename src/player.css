@@ -1,0 +1,146 @@
+#player {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  color: var(--fg);
+  font-family: var(--mono);
+}
+
+.pl-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 26px 22px 14px;
+  background: linear-gradient(to top, rgba(18, 17, 16, 0.94), rgba(18, 17, 16, 0));
+  font-size: 14px;
+  pointer-events: auto;
+  transition: opacity 0.3s;
+}
+.pl-idle .pl-bar {
+  opacity: 0;
+}
+body.pl-idle {
+  cursor: none;
+}
+
+.pl-btn {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+.pl-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.pl-btn:focus-visible,
+.pl-track:focus-visible {
+  outline: 2px solid var(--clawd);
+  outline-offset: 2px;
+}
+
+.pl-time {
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pl-track {
+  position: relative;
+  flex: 1;
+  height: 24px;
+  cursor: pointer;
+  touch-action: none;
+}
+.pl-track::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 4px;
+  margin-top: -2px;
+  background: rgba(255, 255, 255, 0.14);
+}
+.pl-fill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 4px;
+  margin-top: -2px;
+  background: var(--clawd);
+}
+.pl-tick {
+  position: absolute;
+  top: 50%;
+  width: 2px;
+  height: 12px;
+  margin: -6px 0 0 -1px;
+  background: rgba(238, 234, 226, 0.45);
+}
+.pl-knob {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  background: var(--clawd);
+}
+
+.pl-chapter {
+  width: 240px;
+  overflow: hidden;
+  font-family: var(--sans);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pl-cover {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 18px;
+  background: rgba(18, 17, 16, 0.4);
+  pointer-events: auto;
+}
+.pl-gone {
+  display: none;
+}
+.pl-start {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 32px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--clawd);
+  color: #1f1e1d;
+  font: 600 22px var(--sans);
+  cursor: pointer;
+}
+.pl-start:hover {
+  background: var(--clawd-hi);
+}
+.pl-start:focus-visible {
+  outline: 3px solid var(--fg);
+  outline-offset: 4px;
+}
+.pl-hint {
+  color: rgba(238, 234, 226, 0.7);
+  font: 15px var(--sans);
+}
+
+.render-mode #player {
+  display: none;
+}

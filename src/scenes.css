@@ -1,0 +1,943 @@
+/* ── 通用图元 ──────────────────────────────── */
+.fx {
+  left: 0;
+  top: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+.chip {
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  min-width: 100px;
+  height: 66px;
+  padding: 0 20px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--ink-2);
+  font-size: 32px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.chip.mono {
+  font-family: var(--mono);
+  font-size: 30px;
+  font-weight: 400;
+}
+.chip.mini {
+  min-width: 0;
+  height: 20px;
+  padding: 0 8px;
+  border-width: 1px;
+  border-radius: 4px;
+  font-size: 15px;
+}
+.chip.bad {
+  border-color: var(--red);
+  color: var(--red);
+}
+.box {
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  color: var(--dim);
+  font: 24px var(--mono);
+}
+.label {
+  color: var(--dim);
+  font-size: 24px;
+  white-space: nowrap;
+}
+.label.anchor-c {
+  translate: -50% -50%;
+}
+.label.anchor-l {
+  translate: 0 -50%;
+}
+.label.anchor-r {
+  translate: -100% -50%;
+}
+.mono {
+  font-family: var(--mono);
+}
+.faint {
+  color: var(--faint);
+}
+.dot {
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  translate: -50% -50%;
+  background: var(--clawd);
+}
+.axis {
+  font-size: 20px;
+}
+.curve-l {
+  font-size: 22px;
+}
+.row-l {
+  color: var(--faint);
+  font-size: 22px;
+}
+
+/* ── 开场 ──────────────────────────────────── */
+.shell {
+  font: 30px var(--mono);
+  white-space: pre;
+}
+.sh-path {
+  color: var(--teal);
+}
+.sh-arrow {
+  color: var(--k);
+}
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 58px 0 42px;
+  border: 2px solid var(--clawd);
+  border-radius: 20px;
+}
+.welcome-title {
+  position: absolute;
+  top: -0.72em;
+  left: 40px;
+  padding: 0 12px;
+  background: var(--ink);
+  color: var(--clawd);
+  font: 26px var(--mono);
+  white-space: pre;
+}
+.welcome-hi {
+  font: 600 34px var(--mono);
+}
+.welcome-meta {
+  color: var(--dim);
+  font: 22px var(--mono);
+  line-height: 1.6;
+  text-align: center;
+}
+.title-sub {
+  translate: -50% 0;
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+
+/* ── RNN ───────────────────────────────────── */
+.cell {
+  font-size: 26px;
+}
+.cell > span {
+  grid-area: 1 / 1;
+}
+.gates {
+  position: absolute;
+  left: 50%;
+  bottom: 9px;
+  display: flex;
+  gap: 8px;
+  translate: -50% 0;
+}
+.gates i {
+  width: 10px;
+  height: 10px;
+  background: var(--teal);
+}
+.mem-bar {
+  box-sizing: content-box;
+  display: flex;
+  height: 34px;
+  padding: 3px;
+  translate: -50% 0;
+  border: 2px solid var(--dim);
+  border-radius: 6px;
+}
+.mem-bar::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 2px;
+  height: 66px;
+  margin-left: -1px;
+  background: var(--line);
+}
+.mem-seg {
+  flex: none;
+  height: 100%;
+}
+.mem-title {
+  position: absolute;
+  right: calc(100% + 16px);
+  top: 50%;
+  translate: 0 -50%;
+  color: var(--dim);
+  font-size: 24px;
+  white-space: nowrap;
+}
+.mem-share {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 8px);
+  color: var(--clawd);
+  font-size: 24px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.ask-badge {
+  color: var(--q);
+  font-size: 56px;
+  font-weight: 700;
+}
+.step-count {
+  color: var(--clawd);
+  font-size: 26px;
+}
+.gpu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.gpu-name {
+  color: var(--dim);
+  font: 26px var(--mono);
+}
+.gpu-grid {
+  display: grid;
+  grid-template-columns: repeat(16, 20px);
+  gap: 6px;
+}
+.gpu-grid i {
+  width: 20px;
+  height: 20px;
+  background: var(--ink-3);
+}
+.gpu-note {
+  font-size: 22px;
+}
+
+/* ── Seq2Seq ───────────────────────────────── */
+.funnel-l {
+  color: var(--faint);
+  font: 24px var(--mono);
+}
+.ctx-vec {
+  display: grid;
+  gap: 4px;
+  padding: 5px;
+  translate: -50% -50%;
+  border: 2px solid var(--clawd);
+  border-radius: 6px;
+}
+.ctx-vec i {
+  width: 22px;
+  height: 14px;
+}
+.vec-l {
+  color: var(--clawd);
+  font-size: 22px;
+}
+
+/* ── 注意力 ────────────────────────────────── */
+.heat {
+  display: grid;
+  grid-template-columns: repeat(6, 54px);
+  gap: 4px;
+  outline: 3px solid rgba(215, 119, 87, 0);
+  outline-offset: 8px;
+}
+.heat i {
+  width: 54px;
+  height: 54px;
+}
+.heat-l {
+  color: var(--dim);
+  font-size: 22px;
+}
+.rnn-note {
+  border-style: dashed;
+  color: var(--dim);
+  font: 24px var(--sans);
+}
+
+/* ── 2017 论文 ─────────────────────────────── */
+.paper {
+  width: 800px;
+  padding: 40px 64px 30px 92px;
+  border-radius: 3px;
+  background: #f4f1ea;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+  color: #23211f;
+  font-family: var(--serif);
+}
+.pp-stamp {
+  position: absolute;
+  left: 26px;
+  top: 50%;
+  translate: 0 -50%;
+  rotate: 180deg;
+  writing-mode: vertical-rl;
+  color: #9a968e;
+  font: 19px var(--serif);
+  white-space: nowrap;
+}
+.pp-title {
+  width: fit-content;
+  margin: 0 auto 20px;
+  padding-bottom: 4px;
+  background: linear-gradient(var(--clawd), var(--clawd)) no-repeat 0 100% / 0% 6px;
+  font: 700 38px var(--serif);
+}
+.pp-authors {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: center;
+  gap: 4px 24px;
+  margin-bottom: 22px;
+  font: 17px var(--serif);
+}
+.pp-abs-h {
+  margin-bottom: 8px;
+  font: 700 21px var(--serif);
+  text-align: center;
+}
+.pp-abs {
+  margin: 0 30px;
+  font: 18px/1.5 var(--serif);
+  text-align: justify;
+}
+.hl {
+  background: linear-gradient(rgba(215, 119, 87, 0.5), rgba(215, 119, 87, 0.5)) no-repeat 0 0 / 0% 100%;
+  color: inherit;
+}
+.pp-foot {
+  width: 210px;
+  margin-top: 18px;
+  padding-top: 6px;
+  border-top: 1px solid #b9b5ac;
+  color: #66625b;
+  font: 14px var(--serif);
+  white-space: nowrap;
+}
+.strike {
+  width: 232px;
+  height: 6px;
+  background: var(--red);
+}
+
+/* ── 自注意力 ──────────────────────────────── */
+.qkv {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  translate: -50% -50%;
+  border-radius: 6px;
+  color: var(--ink);
+  font: 600 17px var(--mono);
+}
+.qkv-q {
+  background: var(--q);
+}
+.qkv-k {
+  background: var(--k);
+}
+.qkv-v {
+  background: var(--v);
+}
+.probe {
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 0 0 4px rgba(177, 185, 249, 0.3);
+  font-size: 22px;
+}
+.legend {
+  display: grid;
+  gap: 16px;
+  translate: -50% -50%;
+  font-size: 30px;
+}
+.legend > div {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.legend .qkv {
+  position: static;
+  translate: none;
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+}
+.score {
+  color: var(--q);
+  font-size: 26px;
+}
+.wbar {
+  width: 44px;
+  background: var(--clawd);
+  transform-origin: 50% 100%;
+}
+.pct {
+  color: var(--dim);
+  font-size: 20px;
+}
+.it-is {
+  color: var(--clawd);
+  font-size: 26px;
+  font-weight: 700;
+}
+.formula {
+  translate: -50% -50%;
+  font-size: 46px;
+  white-space: nowrap;
+}
+.formula .katex-display {
+  margin: 0;
+}
+.one-step {
+  color: var(--q);
+  font-size: 28px;
+}
+
+/* ── 并行 / 位置编码 / 多头 ────────────────── */
+.lane-l {
+  color: var(--fg);
+  font-size: 26px;
+}
+.pcell {
+  border-radius: 8px;
+}
+.timer {
+  color: var(--fg);
+  font-size: 28px;
+}
+.verdict {
+  font-size: 32px;
+  font-weight: 700;
+}
+.pos-l {
+  color: var(--dim);
+  font-size: 20px;
+}
+.stamp {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  translate: -50% 0;
+  border: 1px solid var(--dim);
+  border-radius: 4px;
+}
+.stamp i {
+  width: 22px;
+  height: 18px;
+}
+.head {
+  display: grid;
+  grid-template-columns: repeat(6, 22px);
+  gap: 2px;
+  translate: -50% -50%;
+}
+.head i {
+  width: 22px;
+  height: 22px;
+}
+.head-l {
+  color: var(--fg);
+  font-size: 22px;
+}
+.head-tag {
+  font-size: 18px;
+}
+
+/* ── 结构图 ────────────────────────────────── */
+.ab {
+  border-radius: 8px;
+  color: var(--fg);
+  font-size: 17px;
+}
+.ab-attn {
+  border-color: var(--clawd);
+  background: rgba(215, 119, 87, 0.14);
+}
+.ab-norm {
+  border-color: #6f6b63;
+  color: var(--dim);
+}
+.ab-ffn {
+  border-color: var(--teal);
+  background: rgba(72, 150, 140, 0.16);
+}
+.ab-emb {
+  border-color: var(--purple);
+  background: rgba(175, 135, 255, 0.12);
+}
+.ab-out {
+  border-color: #6f6b63;
+}
+.pe-plus {
+  border-radius: 50%;
+  color: var(--fg);
+  font-size: 22px;
+}
+.pe-wave {
+  color: var(--purple);
+  font-size: 30px;
+}
+.aframe {
+  border-style: dashed;
+  border-radius: 16px;
+}
+.arch-name {
+  color: var(--fg);
+  font-size: 26px;
+}
+.arch-io {
+  color: var(--dim);
+  font-size: 20px;
+}
+.nx {
+  color: var(--clawd);
+  font-size: 30px;
+  font-weight: 600;
+}
+.results {
+  display: grid;
+  gap: 14px;
+  width: 440px;
+  white-space: nowrap;
+  padding: 26px 30px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--ink-2);
+}
+.res-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-size: 24px;
+}
+.res-row span {
+  flex: 1;
+  color: var(--dim);
+}
+.res-row b {
+  color: var(--clawd);
+  font: 600 40px var(--mono);
+}
+.res-row i {
+  color: var(--dim);
+  font: normal 18px var(--mono);
+}
+.res-note {
+  color: var(--k);
+  font-size: 20px;
+}
+.res-cost {
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 22px;
+}
+
+/* ── BERT 与 GPT ───────────────────────────── */
+.half {
+  border-width: 3px;
+  color: var(--fg);
+  font: 600 28px var(--sans);
+}
+.half-enc {
+  border-color: var(--q);
+}
+.half-dec {
+  border-color: var(--clawd);
+}
+.who {
+  color: var(--dim);
+  font-size: 22px;
+}
+.chip.slot {
+  border-style: dashed;
+  color: var(--dim);
+}
+.chip.mask {
+  border-style: dashed;
+  border-color: var(--q);
+  color: var(--q);
+  font: 26px var(--mono);
+}
+.chip.fill {
+  border-color: var(--clawd);
+  color: var(--clawd);
+}
+.chip.fill-q {
+  border-color: var(--q);
+  color: var(--q);
+}
+.prob {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 36px;
+  font-size: 24px;
+}
+.prob-w {
+  width: 54px;
+  text-align: right;
+}
+.prob i {
+  height: 22px;
+  background: var(--clawd);
+}
+.prob-p {
+  color: var(--dim);
+  font-size: 20px;
+}
+.cap {
+  font-size: 24px;
+}
+.pile {
+  display: grid;
+  translate: -50% -50%;
+}
+.pile i {
+  grid-area: 1 / 1;
+  width: 64px;
+  height: 80px;
+  border: 2px solid var(--dim);
+  background: repeating-linear-gradient(var(--ink-2) 0 12px, #4a4741 12px 14px) content-box var(--ink-2);
+  padding: 10px 8px;
+}
+.pile i:nth-child(2) {
+  translate: 8px -8px;
+}
+.pile i:nth-child(3) {
+  translate: 16px -16px;
+}
+.pile-l {
+  font-size: 22px;
+}
+.bigger {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* ── 规模 ──────────────────────────────────── */
+.pbar {
+  top: auto;
+  width: 140px;
+  background: var(--clawd);
+}
+.bar-val {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  margin-bottom: 10px;
+  translate: -50% 0;
+  color: var(--fg);
+  font-size: 30px;
+  white-space: nowrap;
+}
+.bar-val b {
+  font-weight: 600;
+}
+.bar-name {
+  color: var(--fg);
+  font-size: 24px;
+}
+.bar-year {
+  color: var(--dim);
+  font-size: 20px;
+}
+.law {
+  font-size: 30px;
+  font-weight: 700;
+}
+.shot {
+  display: grid;
+  gap: 10px;
+  padding: 28px 34px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--ink-2);
+  font: 28px var(--mono);
+  white-space: pre;
+}
+.shot-h {
+  color: var(--dim);
+}
+.shot-a {
+  color: var(--k);
+}
+.shot-cur {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: var(--fg);
+}
+
+/* ── 万物皆可 token ────────────────────────── */
+.photo {
+  padding: 0;
+  outline: 2px solid var(--line);
+  outline-offset: 10px;
+}
+.photo svg,
+.patch svg {
+  display: block;
+}
+.patch {
+  transform-origin: 0 0;
+  outline: 2px solid var(--fg);
+}
+.patch-i {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 10px);
+  translate: -50% 0;
+  color: var(--dim);
+  font-size: 28px;
+}
+.tf-box {
+  border-width: 3px;
+  color: var(--fg);
+  font-size: 28px;
+}
+.mod-l,
+.mod-name {
+  color: var(--fg);
+  font-size: 24px;
+}
+.mtok {
+  width: 44px;
+  height: 44px;
+  border: 2px solid;
+  border-radius: 6px;
+}
+.motto {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* ── 对话 / RLHF ───────────────────────────── */
+.chat-card {
+  display: grid;
+  gap: 18px;
+  width: 860px;
+  padding: 30px 36px;
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  background: var(--ink-2);
+}
+.chat-tags {
+  display: grid;
+}
+.chat-tag {
+  grid-area: 1 / 1;
+  font-size: 20px;
+}
+.tag-bad {
+  color: var(--red);
+}
+.tag-good {
+  color: var(--k);
+}
+.chat-q {
+  font-size: 32px;
+}
+.chat-answers {
+  display: grid;
+  min-height: 92px;
+}
+.chat-a {
+  grid-area: 1 / 1;
+  font-size: 30px;
+  line-height: 1.5;
+}
+.chat-bad {
+  color: var(--dim);
+}
+.loop-node {
+  border-color: #6f6b63;
+  color: var(--fg);
+  font: 22px var(--sans);
+}
+.loop-l {
+  color: var(--clawd);
+  font-size: 30px;
+  font-weight: 600;
+}
+.milestone {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  translate: -50% -50%;
+}
+.ms-date {
+  color: var(--dim);
+  font-size: 34px;
+}
+.ms-name {
+  font-size: 64px;
+  font-weight: 700;
+}
+.ms-claude {
+  color: var(--clawd);
+}
+.ms-stat {
+  color: var(--dim);
+  font-size: 30px;
+}
+.ms-stat b {
+  color: var(--fg);
+  font-size: 44px;
+}
+.principles {
+  display: flex;
+  gap: 18px;
+}
+.principle {
+  padding: 8px 22px;
+  border: 2px solid var(--clawd);
+  border-radius: 999px;
+  color: var(--clawd);
+  font-size: 26px;
+}
+.ms-note {
+  color: var(--dim);
+  font-size: 24px;
+}
+.xr-l {
+  color: var(--fg);
+  font-size: 26px;
+}
+.key-attn::before,
+.key-ffn::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  vertical-align: -2px;
+  background: var(--clawd);
+}
+.key-ffn::before {
+  background: var(--teal);
+}
+
+/* ── 今天与明天 ────────────────────────────── */
+.tick-l {
+  color: var(--dim);
+  font-size: 18px;
+}
+.ctx-bar {
+  height: 24px;
+  background: var(--clawd);
+}
+.ctx-pin {
+  width: 16px;
+  height: 16px;
+  translate: -50% -50%;
+  border: 3px solid var(--fg);
+  background: var(--ink);
+}
+.ctx-v {
+  color: var(--fg);
+  font-size: 30px;
+  font-weight: 600;
+}
+.ctx-who {
+  color: var(--dim);
+  font-size: 20px;
+}
+.transcript {
+  display: grid;
+  gap: 14px;
+  width: 800px;
+  padding: 30px 36px;
+  border-left: 4px solid var(--line);
+  font: 30px var(--mono);
+  white-space: pre;
+}
+.tx-think {
+  color: var(--clawd);
+}
+.tx-dot {
+  color: var(--k);
+}
+.tx-msg {
+  color: var(--fg);
+}
+.tx-out {
+  color: var(--dim);
+}
+.tx-zh {
+  font-family: var(--sans);
+}
+.nsq {
+  display: grid;
+  gap: 3px;
+  translate: -50% -50%;
+}
+.nsq i {
+  aspect-ratio: 1;
+  background: rgba(215, 119, 87, 0.55);
+}
+.nsq-l {
+  color: var(--fg);
+  font-size: 24px;
+}
+.nsq-x {
+  font-size: 26px;
+  font-weight: 700;
+}
+.chip.idea {
+  border-color: var(--q);
+  color: var(--q);
+  font-size: 30px;
+}
+.stack-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 480px;
+  height: 48px;
+  translate: -50% -50%;
+  font-size: 22px;
+}
+.stack-row span {
+  display: grid;
+  place-items: center;
+}
+.sr-a {
+  background: rgba(215, 119, 87, 0.75);
+}
+.sr-f {
+  background: rgba(72, 150, 140, 0.75);
+}
+.stack-l {
+  color: var(--dim);
+  font-size: 28px;
+}
+.thanks {
+  translate: -50% -50%;
+  font-size: 72px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.cite {
+  translate: -50% -50%;
+  color: var(--dim);
+  font: italic 26px var(--serif);
+  white-space: nowrap;
+}

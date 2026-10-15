@@ -1,0 +1,31 @@
+{
+  "name": "claude-say-transformer",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Sparrived",
+  "description": "Clawd（Claude Code 的橙色像素小人）讲解 Transformer 的前世今生 —— GSAP 动画",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc",
+    "render": "node scripts/render.mjs",
+    "audio": "node scripts/audio.mjs",
+    "score": "node --no-warnings scripts/score-report.mjs",
+    "snap": "node scripts/snap.mjs"
+  },
+  "dependencies": {
+    "@fontsource/maple-mono": "^5.3.0",
+    "@fontsource/noto-sans-sc": "^5.3.1",
+    "figlet": "^1.12.0",
+    "gsap": "^3.15.0",
+    "katex": "^0.19.0"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.14.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4"
+  }
+}
