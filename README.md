@@ -89,12 +89,14 @@ ClaudeSayTransformer/
 │   │   ├── score.ts        # 8 复音算法电子音乐编曲乐谱与合成编排
 │   │   ├── sfx.ts          # 终端打字、转场、按键声效生成器 (Web Audio API)
 │   │   └── terminal.ts     # 终端窗口、命令提示符模拟与输入动画
+│   ├── cover/              # 视频封面排版与渲染逻辑
 │   ├── director.ts         # 导演类：统一编排分镜、音轨 cue、时钟标记
 │   ├── layout.ts           # 1920x1080 舞台常数与全局布局配置
 │   ├── main.ts             # 启动入口：字体屏障加载、播放器挂载与导出接口暴露
 │   └── player.ts           # 浏览器全功能交互式播放器实现
 ├── scripts/                # Node.js 生产工具集
 │   ├── browser.mjs         # Headless 浏览器会话管理封装
+│   ├── cover.mjs           # 自动导出 16:10 / 16:9 视频封面图
 │   ├── render.mjs          # 分段并行多进程 1080p 逐帧渲染与 FFmpeg 拼接
 │   ├── audio.mjs           # 独立重绘/导出音轨并重新混流视频
 │   ├── score-report.mjs    # 配乐曲式结构、小节、BPM 与和弦巡检报告
@@ -176,7 +178,14 @@ npm run audio -- --wav out/soundtrack.wav --only music
 npm run score
 ```
 
-### 4. 任意时间点或章节精准截图
+### 4. 一键生成高清视频封面
+
+```bash
+# 自动截取生成适用于主流视频平台的封面图（输出至 out/cover-16x10.png 与 out/cover-16x9.png）
+npm run cover
+```
+
+### 5. 任意时间点或章节精准截图
 
 ```bash
 # 截取指定绝对秒数

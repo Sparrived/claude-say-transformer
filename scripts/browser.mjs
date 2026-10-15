@@ -12,15 +12,20 @@ const CANDIDATES = [
   '/usr/bin/chromium',
 ].filter(Boolean)
 
-export async function openMovie(url) {
+/** 启动无头浏览器；viewport 是新标签页的默认大小 */
+export async function launchBrowser(viewport = { width: 1920, height: 1080 }) {
   const executablePath = CANDIDATES.find((p) => existsSync(p))
   if (!executablePath) throw new Error('找不到 Edge / Chrome，可以用环境变量 BROWSER 指定浏览器路径')
-  const browser = await puppeteer.launch({
+  return puppeteer.launch({
     executablePath,
     headless: true,
-    defaultViewport: { width: 1920, height: 1080, deviceScaleFactor: 1 },
+    defaultViewport: { ...viewport, deviceScaleFactor: 1 },
     args: ['--hide-scrollbars', '--force-color-profile=srgb', '--autoplay-policy=no-user-gesture-required'],
   })
+}
+
+export async function openMovie(url) {
+  const browser = await launchBrowser()
   const page = await browser.newPage()
   page.on('pageerror', (e) => console.error('[page error]', e.message))
   page.on('console', (m) => m.type() === 'error' && console.error('[console]', m.text()))

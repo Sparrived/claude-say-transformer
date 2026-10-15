@@ -1,0 +1,131 @@
+#cover {
+  position: relative;
+  width: 1920px;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--fg);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 像素点阵：很淡，只是让背景有“方格纸”的质感 */
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(238, 234, 226, 0.07) 2.5px, transparent 3px);
+  background-size: 48px 48px;
+  background-position: 24px 24px;
+}
+
+.design {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1200px;
+  transform-origin: 0 0;
+}
+.design > * {
+  position: absolute;
+}
+
+/* 像素风的切角：四个角各缺 12px 的方块 */
+.tag,
+.badge {
+  clip-path: polygon(
+    0 12px,
+    12px 12px,
+    12px 0,
+    calc(100% - 12px) 0,
+    calc(100% - 12px) 12px,
+    100% 12px,
+    100% calc(100% - 12px),
+    calc(100% - 12px) calc(100% - 12px),
+    calc(100% - 12px) 100%,
+    12px 100%,
+    12px calc(100% - 12px),
+    0 calc(100% - 12px)
+  );
+}
+
+.top {
+  left: 120px;
+  right: 120px;
+  top: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tag {
+  padding: 14px 36px 18px;
+  background: var(--clawd);
+  color: var(--ink);
+  font: 900 64px/1 var(--sans);
+  letter-spacing: 0.04em;
+}
+.badge {
+  padding: 14px 34px 18px;
+  background: var(--ink-3);
+  color: var(--v);
+  font: 900 52px/1 var(--sans);
+  letter-spacing: 0.04em;
+}
+
+.banner-box {
+  left: 120px;
+  top: 330px;
+}
+
+.title {
+  left: 112px;
+  top: 570px;
+  margin: 0;
+  color: var(--fg);
+  font: 900 220px/1 var(--sans);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  /* 和字符画的“阴影线”同一个思路：一道硬边的暗橙色偏移 */
+  text-shadow: 7px 7px 0 #6f3b2c;
+}
+
+.prompt {
+  left: 120px;
+  right: 120px;
+  top: 890px;
+  height: 124px;
+  display: flex;
+  align-items: center;
+  padding: 0 44px;
+  border: 3px solid rgba(154, 149, 139, 0.7);
+  border-radius: 22px;
+}
+.prompt-line {
+  display: flex;
+  align-items: center;
+  font: 500 60px/1 var(--sans);
+  white-space: pre;
+}
+.gt {
+  margin-right: 28px;
+  color: var(--clawd);
+  font: 600 60px/1 var(--mono);
+}
+.prompt-line .cursor {
+  margin-left: 6px;
+}
+
+/* Clawd 的脚底中心就是这个点：输入框上沿 */
+.cover-actors {
+  position: absolute;
+  left: 0;
+  top: -3px;
+  width: 0;
+  height: 0;
+}
+
+.foot {
+  left: 144px;
+  top: 1118px;
+  color: var(--faint);
+  font: 400 28px var(--mono);
+}
